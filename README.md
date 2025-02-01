@@ -1,6 +1,15 @@
 [![GHCR Build Status](https://github.com/infrastructure-as-code/docker-postgres/actions/workflows/ghcr.yml/badge.svg?branch=main)](https://github.com/infrastructure-as-code/docker-postgres/actions/workflows/ghcr.yml)
 [![Docker Hub Build Status](https://github.com/infrastructure-as-code/docker-postgres/actions/workflows/dockerhub.yml/badge.svg?branch=main)](https://github.com/infrastructure-as-code/docker-postgres/actions/workflows/dockerhub.yml)
 
+# Actually for redis now
+
+This is the same as the postgres version, but changed to work for redis. Haven't
+updated the readme yet.
+
+How to use: this container overwrites the entrypoint for the standard redis
+container and uses the config file stored at `/etc/redis.conf`. If you want to
+change any of the configuration, mount your own `redis.conf` as a volume at that
+path and it will be used for everything except the TLS configuration.
 
 # Postgres Docker Image with Self-Signed SSL Certs
 

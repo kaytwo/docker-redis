@@ -1,5 +1,5 @@
 ARG base_image
-FROM ${base_image}
+FROM ${base_image:-redis:latest}
 
 RUN \
   export DEBIAN_FRONTEND=noninteractive && \
@@ -10,4 +10,6 @@ RUN \
   apt-get autoremove --yes && \
   rm -rf /var/lib/{apt,dpkg,cache,log}/ && \
   unset DEBIAN_FRONTEND
-COPY generate-ssl-certs.sh /docker-entrypoint-initdb.d/
+COPY redis-entrypoint.sh /usr/local/bin/
+
+ENTRYPOINT ["/usr/local/bin/redis-entrypoint.sh"]

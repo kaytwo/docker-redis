@@ -1,7 +1,9 @@
 ARG base_image
-FROM ${base_image}
+FROM ${base_image:-redis:alpine}
 
 RUN \
   apk add --no-cache \
     openssl
-COPY generate-ssl-certs.sh /docker-entrypoint-initdb.d/
+COPY redis-entrypoint.sh /usr/local/bin/
+
+ENTRYPOINT ["/usr/local/bin/redis-entrypoint.sh"]

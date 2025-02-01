@@ -1,21 +1,13 @@
-image = ghcr.io/infrastructure-as-code/postgres
+image = ghcr.io/kaytwo/redis
 versions = \
 	debian \
 	alpine
 
 alpine_tags = \
-	13-alpine \
-	14-alpine \
-	15-alpine \
-	16-alpine \
-	17-alpine
+	7-alpine
 
 debian_tags = \
-	13 \
-	14 \
-	15 \
-	16 \
-	17
+	7
 
 all: $(alpine_tags) $(debian_tags)
 
@@ -30,7 +22,7 @@ build:
 	docker build --rm \
 		--tag $(tag) \
 		--file $(distro).Dockerfile \
-		--build-arg base_image=public.ecr.aws/docker/library/postgres:$(version) \
+		--build-arg base_image=public.ecr.aws/docker/library/redis:$(version) \
 		.
 	IMAGE=$(tag) docker compose -f docker-compose.test.yml run sut
 	IMAGE=$(tag) docker compose -f docker-compose.test.yml down
