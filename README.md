@@ -32,9 +32,11 @@ already in there.
 
 In order to ensure the provenance of the images, all images are automatically
 built and pushed by [GitHub Actions](https://github.com/features/actions) with
-every push to the `main` branch of this repo. Weekly builds are kicked off on
-Saturdays at 00:30 UTC so that we get all the upstream updates to the `postgres`
-image.
+every push to the `main` branch of this repo. The provenance can be confirmed
+using the `[gh attestation
+verify](https://cli.github.com/manual/gh_attestation_verify)` command. Weekly
+builds are kicked off on Saturdays at 00:30 UTC so that we get all the upstream
+updates to the `redis` image.
 
 ## Multiarch
 
