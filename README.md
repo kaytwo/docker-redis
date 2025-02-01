@@ -1,23 +1,40 @@
-[![GHCR Build Status](https://github.com/infrastructure-as-code/docker-postgres/actions/workflows/ghcr.yml/badge.svg?branch=main)](https://github.com/infrastructure-as-code/docker-postgres/actions/workflows/ghcr.yml)
-[![Docker Hub Build Status](https://github.com/infrastructure-as-code/docker-postgres/actions/workflows/dockerhub.yml/badge.svg?branch=main)](https://github.com/infrastructure-as-code/docker-postgres/actions/workflows/dockerhub.yml)
+[![GHCR Build Status](https://github.com/kaytwo/docker-redis/actions/workflows/ghcr.yml/badge.svg?branch=main)](https://github.com/kaytwo/docker-redis/actions/workflows/ghcr.yml)
+[![Docker Hub Build Status](https://github.com/kaytwo/docker-redis/actions/workflows/dockerhub.yml/badge.svg?branch=main)](https://github.com/kaytwo/docker-redis/actions/workflows/dockerhub.yml)
 
-# Actually for redis now
+# Redis Docker Image with Self-Signed SSL Certs
 
-This is the same as the postgres version, but changed to work for redis. Haven't
-updated the readme yet.
+This is the same as the [postgres
+version](https://github.com/infrastructure-as-code/docker-postgres), but changed
+to work for redis. Haven't updated the readme yet.
 
-How to use: this container overwrites the entrypoint for the standard redis
-container and uses the config file stored at `/etc/redis.conf`. If you want to
-change any of the configuration, mount your own `redis.conf` as a volume at that
-path and it will be used for everything except the TLS configuration.
+The [official Redis image](https://hub.docker.com/_/redis) comes without
+any SSL certificates, leaving users to create the functionality for themselves.
+This image strives to provide that missing functionality by using self-signed
+SSL certificates. It is available on both GitHub Container Register (`ghcr.io`)
+and Docker Hub (`hub.docker.com`).
+
+This container overwrites the entrypoint for the standard redis container and
+uses the config file stored at `/etc/redis.conf`. If you want to change any of
+the configuration, mount your own `redis.conf` as a volume at that path and it
+will be used for everything except the TLS configuration.
+
+Unfortunately because I don't want to parse the redis command line, this means
+that you can't specify any configuration as part of the command arguments - you
+need to either use the config file or environment variables.
+
+If you want to persist your ssl keys for whatever reason, you can mount the
+directory `/etc/ssl/private`, and key generation will be skipped if they're
+already in there.
 
 # Postgres Docker Image with Self-Signed SSL Certs
 
-The [official Postgres image](https://hub.docker.com/_/postgres) comes without any SSL certificates, leaving users to create the functionality for themselves.  This image strives to provide that missing functionality by using self-signed SSL certificates.  It is available on both GitHub Container Register (`ghcr.io`) and Docker Hub (`hub.docker.com`).
-
 ## Automated Builds
 
-In order to ensure the provenance of the images, all images are automatically built and pushed by [GitHub Actions](https://github.com/features/actions) with every push to the `main` branch of this repo.  Weekly builds are kicked off on Saturdays at 00:30 UTC so that we get all the upstream updates to the `postgres` image.
+In order to ensure the provenance of the images, all images are automatically
+built and pushed by [GitHub Actions](https://github.com/features/actions) with
+every push to the `main` branch of this repo. Weekly builds are kicked off on
+Saturdays at 00:30 UTC so that we get all the upstream updates to the `postgres`
+image.
 
 ## Multiarch
 
@@ -36,11 +53,11 @@ Images are built for the following architecture.
 
 ## Supported Tags and Respective Dockerfiles
 
-* [`13`](https://github.com/infrastructure-as-code/docker-postgres/blob/main/debian.Dockerfile), [`13-alpine`](https://github.com/infrastructure-as-code/docker-postgres/blob/main/alpine.Dockerfile)
-* [`14`](https://github.com/infrastructure-as-code/docker-postgres/blob/main/debian.Dockerfile), [`14-alpine`](https://github.com/infrastructure-as-code/docker-postgres/blob/main/alpine.Dockerfile)
-* [`15`](https://github.com/infrastructure-as-code/docker-postgres/blob/main/debian.Dockerfile), [`15-alpine`](https://github.com/infrastructure-as-code/docker-postgres/blob/main/alpine.Dockerfile)
-* [`16`](https://github.com/infrastructure-as-code/docker-postgres/blob/main/debian.Dockerfile), [`16-alpine`](https://github.com/infrastructure-as-code/docker-postgres/blob/main/alpine.Dockerfile)
-* [`17`](https://github.com/infrastructure-as-code/docker-postgres/blob/main/debian.Dockerfile), [`17-alpine`](https://github.com/infrastructure-as-code/docker-postgres/blob/main/alpine.Dockerfile)
+* [`13`](https://github.com/kaytwo/docker-redis/blob/main/debian.Dockerfile), [`13-alpine`](https://github.com/kaytwo/docker-redis/blob/main/alpine.Dockerfile)
+* [`14`](https://github.com/kaytwo/docker-redis/blob/main/debian.Dockerfile), [`14-alpine`](https://github.com/kaytwo/docker-redis/blob/main/alpine.Dockerfile)
+* [`15`](https://github.com/kaytwo/docker-redis/blob/main/debian.Dockerfile), [`15-alpine`](https://github.com/kaytwo/docker-redis/blob/main/alpine.Dockerfile)
+* [`16`](https://github.com/kaytwo/docker-redis/blob/main/debian.Dockerfile), [`16-alpine`](https://github.com/kaytwo/docker-redis/blob/main/alpine.Dockerfile)
+* [`17`](https://github.com/kaytwo/docker-redis/blob/main/debian.Dockerfile), [`17-alpine`](https://github.com/kaytwo/docker-redis/blob/main/alpine.Dockerfile)
 
 
 ## Usage
