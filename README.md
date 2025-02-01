@@ -5,7 +5,7 @@
 
 This is the same as the [postgres
 version](https://github.com/infrastructure-as-code/docker-postgres), but changed
-to work for redis. Haven't updated the readme yet.
+to work for redis.
 
 The [official Redis image](https://hub.docker.com/_/redis) comes without
 any SSL certificates, leaving users to create the functionality for themselves.
