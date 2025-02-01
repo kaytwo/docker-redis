@@ -12,4 +12,5 @@ services:
     depends_on:
       server:
         condition: service_healthy
+    # trivially exits because the healthcheck did the work
     entrypoint: ["/bin/true"]
