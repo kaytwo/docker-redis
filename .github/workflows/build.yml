@@ -3,9 +3,9 @@ on:
   - push
   - pull_request
 env:
-  IMAGE: ghcr.io/${{ github.repository_owner }}/postgres
+  IMAGE: ghcr.io/${{ github.repository_owner }}/redis
   #BASE_IMAGE: public.ecr.aws/docker/library/postgres
-  BASE_IMAGE: postgres
+  BASE_IMAGE: redis
 jobs:
   build-only:
     runs-on: ubuntu-latest
