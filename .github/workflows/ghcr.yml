@@ -11,9 +11,8 @@ on:
     - cron: "30 0 * * 6"
 env:
   REGISTRY: ghcr.io
-  IMAGE: ghcr.io/${{ github.repository_owner }}/postgres
-  #BASE_IMAGE: public.ecr.aws/docker/library/postgres
-  BASE_IMAGE: postgres
+  IMAGE: ghcr.io/${{ github.repository_owner }}/redis
+  BASE_IMAGE: redis
 jobs:
   build-and-push:
     runs-on: ubuntu-latest

@@ -11,8 +11,8 @@ on:
     - cron: "30 0 * * 6"
 
 env:
-  IMAGE: infrastructureascode/postgres
-  BASE_IMAGE: postgres
+  IMAGE: kaytwo/redis
+  BASE_IMAGE: redis
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
